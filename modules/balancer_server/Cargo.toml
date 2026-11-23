@@ -1,0 +1,29 @@
+[package]
+name = "balancer_server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "balancer_server"
+path = "src/main.rs"
+
+
+[dependencies]
+balancer_core = {path = "../balancer_core"}
+tokio.workspace = true
+hyper.workspace = true
+hyper-util.workspace = true
+http.workspace = true
+http-body-util.workspace = true
+bytes.workspace= true
+tower.workspace = true
+tower-http.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+toml.workspace = true
+anyhow.workspace=true
+tracing.workspace = true
+tracing-subscriber.workspace = true

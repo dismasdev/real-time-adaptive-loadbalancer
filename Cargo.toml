@@ -1,0 +1,104 @@
+[workspace]
+resolver = "2"
+members  =["modules/balancer_core", "modules/balancer_server", "modules/loadgen","testing"]
+default-members = []
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+authors = ["Emmanuel Dismas","emanuel.dismasi@gmail.com"]
+rust-version = "1.85"
+
+
+[workspace.dependencies]
+
+#Asynchronous runtime
+tokio = {version = "1.54.1",features = ["full"]}
+tokio-util = "0.7.20"
+futures = "0.3.34"
+
+#concurrency
+dashmap = "6.2.1"
+arc-swap = "1.9.5"
+
+#algorithms 
+rand = "0.10.4"
+xxhash-rust = {version = "0.8.21",features = ["xxh3"]}
+
+
+#networking
+hyper = {version = "1.12.0" , features = ["default"]}
+hyper-body-utils = "0.1.18"
+hyper-util = {version = "0.1.21",features = ["full"]}
+http = "1.5.0"
+http-body-util = {version = "0.1.5"}
+bytes = "1.12.2"
+tower = "0.5.3"
+tower-http = {version = "0.7.1",features = ["trace"]}
+reqwest = {version = "0.13.5",features = ["json"]}
+
+#Errors and error handling
+anyhow = {version = "1.0.105"}
+thiserror = "2.0.21"
+
+
+#serialization and deserialization
+config = "0.15.27"
+serde = {version = "1.0.229", features = ["derive"]}
+serde_json = "1.0.154"
+toml = "1.2.2"
+
+#CLI
+clap = "4.6.9"
+
+#observability
+tracing = "0.1.44"
+tracing-subscriber = {version = "0.3.23",features = ["env-filter"]}
+prometheus = "0.14.0"
+hdrhistogram = "7.6.0"
+
+#testing and benchmarking
+criterion = "0.8.2"
+proptest = "1.12.0"
+mockall = "0.15.0"
+rstest = "0.29.0"
+tokio-test = "0.4.6"
+cargo-fuzz = "0.13.2"
+oha = "1.17.0"
+
+
+
+
+#Development/Debug
+[profile.dev]
+opt-level =0
+debug = true
+incremental = true
+overflow-checks = true
+panic = "unwind"
+
+#Release
+[profile.release]
+opt-level = 3
+debug = false
+incremental = false
+overflow-checks = false
+lto = "thin"
+codegen-units = 1
+panic = "unwind"
+
+#testing
+[profile.test]
+opt-level = 0
+debug =true
+overflow-checks = true
+incremental = true
+
+#Benchmarking
+[profile.bench]
+opt-level = 3
+debug = true
+lto = "thin"
+codegen-units = 1
+
