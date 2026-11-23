@@ -1,0 +1,18 @@
+[package]
+name = "balancer_error"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Unfied error handling for the real-time adaptive load balancer"
+
+
+[dependencies]
+thiserror.workspace = true
+serde = {workspace = true, optional = true}
+
+[features]
+default = []
+serde = ["dep:serde"]
+
