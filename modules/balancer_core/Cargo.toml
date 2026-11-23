@@ -21,6 +21,7 @@ thiserror.workspace = true
 tracing.workspace = true
 prometheus.workspace = true
 hdrhistogram.workspace = true
+balancer_error = {path = "../../balancer_error"}
 
 [dev-dependencies]
 proptest.workspace = true

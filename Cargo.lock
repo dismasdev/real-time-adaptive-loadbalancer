@@ -137,6 +137,7 @@ name = "balancer_core"
 version = "0.1.0"
 dependencies = [
  "arc-swap",
+ "balancer_error",
  "criterion",
  "dashmap",
  "hdrhistogram",
