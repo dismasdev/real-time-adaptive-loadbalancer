@@ -1,0 +1,114 @@
+#[[
+# Real-Time Adaptive Load Balancer
+# workspace level Bacon configuration
+#
+
+
+default_job = "check"
+# Shared environment for Cargo jobs
+
+env.CARGO_TERM_COLOR = "always"
+
+# Watch all workspace crates and the root lockfile
+
+
+watch = [
+    "modules",
+    "testing",
+    "Cargo.toml",
+    "Cargo.lock",
+]
+
+# FAST DEVELOPMENT CHECKS
+
+[jobs.check]
+command = ["cargo","check","--workspace"]
+
+[jobs.check-all]
+command = ["cargo","check","--workspace","--all-targets"]
+
+# Testing
+
+[jobs.test]
+command = ["cargo","test","--workspace",]
+need_stdout = true
+
+[jobs.test-core]
+command = ["cargo","test","-p","balancer_core"]
+need_stdout = true
+
+[jobs.test-server]
+command = ["cargo","test","-p","balancer_server"]
+need_stdout = true
+
+[jobs.test-testing]
+command = ["cargo","test","-p","balancer_testing"]
+need_stdout = true
+
+
+[jobs.integration]
+command = ["cargo","test","--workspace","--test"]
+need_stdout = true
+
+[jobs.clippy]
+command = [
+    "cargo",
+    "clippy",
+    "--workspace",
+    "--all-targets",
+    "--",
+    "-D",
+    "warnings"
+]
+
+[jobs.fmt]
+command = ["cargo","fmt","--all","--","--check"]
+
+[jobs.bench-check]
+command = ["cargo","bench","--workspace","--no-run"]
+need_stdout = true
+
+[jobs.bench]
+command = ["cargo","bench","-p","balancer_testing"]
+need_stdout = true
+
+
+[jobs.doc]
+command = ["cargo","doc","--workspace","--no-deps"]
+
+# server development
+[jobs.run-server]
+command = ["cargo","run","-p","balancer_server"]
+need_stdout = true
+allow_warnings = true
+background = false
+on_change_strategy = "kill_then_restart"
+scroll_anchor = "auto"
+
+[jobs.run-long]
+command = [
+    "cargo",
+    "run",
+    "--release",
+    "-p",
+    "balancer_server",
+]
+need_stdout = true
+allow_warnings = true
+background = false
+on_change_strategy = "kill_then_restart"
+
+[keybindings]
+c = "job:clippy"
+t = "job:test"
+i = "job:integration"
+f = "job:fmt"
+b = "job:bench-check"
+d = "job:doc"
+r = "job:run-server"
+l = "job:run-long"
+
+[exports.locations]
+auto =true
+path = ".bacon-locations"
+line_format = "{kind} {path}:{line:{column}{message}}"
