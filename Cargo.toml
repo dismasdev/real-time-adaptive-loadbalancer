@@ -1,7 +1,7 @@
 [workspace]
 resolver = "2"
 members  =["balancer_error","modules/balancer_core", "modules/balancer_server", "modules/loadgen","testing"]
-default-members = []
+default-members = ["modules/balancer_server","modules/balancer_core"]
 
 [workspace.package]
 version = "0.1.0"
