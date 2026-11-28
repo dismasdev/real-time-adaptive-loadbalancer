@@ -16,7 +16,7 @@ rust-version = "1.85"
 #Asynchronous runtime
 tokio = {version = "1.54.1",features = ["full"]}
 tokio-util = "0.7.20"
-futures = "0.3.34"
+
 
 #concurrency
 dashmap = "6.2.1"
@@ -39,9 +39,8 @@ tower-http = {version = "0.7.1",features = ["trace"]}
 reqwest = {version = "0.13.5",features = ["json"]}
 
 #Errors and error handling
-anyhow = {version = "1.0.105"}
 thiserror = "2.0.21"
-
+anyhow = "1.0.105"
 
 #serialization and deserialization
 config = "0.15.27"
@@ -64,7 +63,7 @@ proptest = "1.12.0"
 mockall = "0.15.0"
 rstest = "0.29.0"
 tokio-test = "0.4.6"
-cargo-fuzz = "0.13.2"
+
 oha = "1.17.0"
 
 
