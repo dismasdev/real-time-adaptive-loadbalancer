@@ -1,15 +1,11 @@
-//! this modules defines the error type and error messages returned from the commandline 
-//! when things go wrong 
+//! this modules defines the error type and error messages returned from the commandline
+//! when things go wrong
 
 use crate::kind::ErrorKind;
 use thiserror::Error;
 
-
-
-
-
-#[derive(Debug,Error)]
-pub enum BalancerError{
+#[derive(Debug, Error)]
+pub enum BalancerError {
     #[error("the backend is not found")]
     NotFound,
 
@@ -27,7 +23,6 @@ pub enum BalancerError{
 
     #[error("proxy error: {0}")]
     ProxyError(String),
-
 }
 
 impl BalancerError {
@@ -41,7 +36,5 @@ impl BalancerError {
             Self::RegistryEmpty => ErrorKind::NoBackend,
             Self::ConfigError(_) => ErrorKind::Config,
         }
-
     }
-    
 }
