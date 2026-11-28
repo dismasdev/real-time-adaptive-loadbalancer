@@ -12,8 +12,10 @@ description = "Unfied error handling for the real-time adaptive load balancer"
 thiserror.workspace = true
 serde = {workspace = true, optional = true}
 anyhow.workspace = true
+balancer_core = {path ="../modules/balancer_core"}
 
 [features]
 default = []
 serde = ["dep:serde"]
+
 
